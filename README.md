@@ -19,8 +19,8 @@ pip install mcp-server-waii
 You can run the server using the command-line interface:
 
 ```bash
-mcp-server-waii --database-key YOUR_DB_KEY --api-key YOUR_API_KEY --url YOUR_WAII_URL
-```
+python -m mcp-server-waii --database-key YOUR_DB_KEY --api-key YOUR_API_KEY --url YOUR_WAII_URL
+``` 
 
 ### Required Arguments
 
@@ -44,10 +44,9 @@ asyncio.run(serve(
 
 ## Features
 
-- Database schema introspection
+- Database metadata management and conversation
 - Natural language to SQL query conversion
 - Query execution and result formatting
-- Conversation context maintenance
 - Automatic query and data visualization
 
 ## Development
@@ -69,10 +68,6 @@ pip install -e .
 ```bash
 python -m pytest tests/
 ```
-
-## Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request. For major changes, please open an issue first to discuss what you would like to change.
 
 ## Support
 

@@ -27,7 +27,6 @@ class ChatbotRequest(BaseModel):
     """Parameters for chatbot queries."""
     question: Annotated[str, Field(description="The question to ask the chatbot about the database")]
 
-
 class Chatbot:
     def __init__(self, url: str, api_key: str, database_key: str):
         try:
@@ -117,8 +116,9 @@ class Chatbot:
             error_msg = f"Error asking question: {str(e)}"
             log_error(error_msg)
             raise McpError(ErrorData(code=INVALID_PARAMS, message=error_msg))
-    
-    def get_database_description(self) -> str:
+
+    @staticmethod
+    def get_database_description() -> str:
         try:
             log_info("Fetching database catalogs...")
             catalog = WAII.database.get_catalogs()
@@ -160,10 +160,10 @@ async def serve(
         log_info("Initializing chatbot...")
         chatbot = Chatbot(url, api_key, database_key)
         log_info("Getting database description...")
-        db_description = chatbot.get_database_description()
-        tool_name = "waii_chatbot"
-        tool_description = f"""Ask any question about the attached database: {db_description}
-The waii_chatbot can generate queries and retrieve data from this database as well as answer other questions about tables, columns, etc..
+        db_description = Chatbot.get_database_description()
+        chatbot_tool_name = "waii_chatbot"
+        chatbot_tool_description = f"""Ask any question about the attached database: {db_description}
+The waii_chatbot can generate queries and retrieve data from this database as well as answer other questions about schemas, tables, columns, etc..
 The user has already configured this database, ask questions, and the chatbot will maintain its own conversation history and respond with an answer that you can present to the user.
 """
         log_info("Setting up server tools...")
@@ -173,8 +173,8 @@ The user has already configured this database, ask questions, and the chatbot wi
             log_info("Listing available tools...")
             return [
                 Tool(
-                    name=tool_name,
-                    description=tool_description,
+                    name=chatbot_tool_name,
+                    description=chatbot_tool_description,
                     inputSchema=ChatbotRequest.model_json_schema(),
                 )
             ]
@@ -182,21 +182,21 @@ The user has already configured this database, ask questions, and the chatbot wi
         @server.call_tool()
         async def call_tool(name: str, arguments: dict) -> list[TextContent]:
             log_info(f"Tool call received: {name}")
-            if name == tool_name:
-                try:
+            try:
+                if name == chatbot_tool_name:
                     args = ChatbotRequest(**arguments)
                     log_info(f"Processing question: {args.question}")
                     response = chatbot.ask_question(args.question)
                     return [TextContent(type="text", text=response)]
-                except ValueError as e:
-                    error_msg = f"Invalid arguments: {str(e)}"
-                    log_error(error_msg)
-                    raise McpError(ErrorData(code=INVALID_PARAMS, message=error_msg))
-                except Exception as e:
-                    error_msg = f"Error processing tool call: {str(e)}"
-                    log_error(error_msg)
-                    raise McpError(ErrorData(code=INVALID_PARAMS, message=error_msg))
-            
+            except ValueError as e:
+                error_msg = f"Invalid arguments: {str(e)}"
+                log_error(error_msg)
+                raise McpError(ErrorData(code=INVALID_PARAMS, message=error_msg))
+            except Exception as e:
+                error_msg = f"Error processing tool call: {str(e)}"
+                log_error(error_msg)
+                raise McpError(ErrorData(code=INVALID_PARAMS, message=error_msg))
+
             error_msg = f"Unknown tool: {name}"
             log_error(error_msg)
             raise McpError(ErrorData(code=INVALID_PARAMS, message=error_msg))

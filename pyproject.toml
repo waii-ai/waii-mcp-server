@@ -12,7 +12,7 @@ version = "0.1.0"
 description = "An MCP server implementation for WAII database interactions"
 readme = "README.md"
 requires-python = ">=3.8"
-license = { text = "Apache-2.0" }
+license = { text = "MIT" }
 authors = [
     { name = "Swaraj Nayegandhi", email = "swaraj.nayegandhi@waii.ai" },
 ]
@@ -38,16 +38,6 @@ dependencies = [
     "pydantic>=2.0.0",
     "pandas>=1.0.0",
 ]
-
-[project.urls]
-"Homepage" = "https://github.com/waii-ai/mcp-server-waii"
-"Documentation" = "https://github.com/waii-ai/mcp-server-waii/wiki"
-"Repository" = "https://github.com/waii-ai/mcp-server-waii"
-"Issues" = "https://github.com/waii-ai/mcp-server-waii/issues"
-"Changelog" = "https://github.com/waii-ai/mcp-server-waii/blob/main/CHANGELOG.md"
-"Bug Tracker" = "https://github.com/waii-ai/mcp-server-waii/issues"
-"Source Code" = "https://github.com/waii-ai/mcp-server-waii"
-"WAII Documentation" = "https://docs.waii.ai/"
 
 [project.scripts]
 mcp-server-waii = "mcp_server_waii:main" 
