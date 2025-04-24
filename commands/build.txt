@@ -1,0 +1,2 @@
+python -m build
+python -m pip install dist/mcp_server_waii-0.1.0.tar.gz
