@@ -96,7 +96,7 @@ There are several ways to configure the server for Claude:
 ```
 
 #### Example Values:
-- `YOUR_WAII_URL`: e.g., "http://localhost:9859/api/" or "https://api.waii.ai/api/"
+- `YOUR_WAII_URL`: e.g., "http://<waii url>/api/"
 - `YOUR_API_KEY`: Your WAII API key
 - `YOUR_DATABASE_CONNECTION_STRING`: e.g., "snowflake://USER@HOST/DB?role=ROLE&warehouse=WAREHOUSE"
 
