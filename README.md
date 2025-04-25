@@ -1,53 +1,112 @@
-# MCP Server WAII
+# WAII MCP Server
 
-An MCP (Model Context Protocol) server implementation for WAII database interactions. This server allows language models to interact with databases through the WAII SDK.
+A Model Context Protocol server that provides database interaction capabilities through WAII. This server enables Language Models to interact with databases, execute queries, and process database content through natural language.
 
-## Requirements
+## Available Tools
 
-- Python 3.8 or higher
-- A WAII account with API access
-- Database credentials supported by WAII
+### database
+Interact with databases through WAII's natural language interface.
+
+**Arguments:**
+- `database-key` (string, required): Your database connection string
+- `api-key` (string, required): Your WAII API key
+- `url` (string, required): WAII API endpoint URL
 
 ## Installation
+
+### Using uv/uvx (recommended)
+When using uv/uvx no specific installation is needed. You can directly run the server using either approach:
+
+Using `uv`:
+```bash
+uv run -m mcp_server_waii \
+  --url "YOUR_WAII_URL" \
+  --api-key "YOUR_API_KEY" \
+  --database-key "YOUR_DATABASE_CONNECTION_STRING"
+```
+
+### Using pip
+Alternatively, you can install mcp-server-waii via pip:
 
 ```bash
 pip install mcp-server-waii
 ```
 
-## Usage
-
-You can run the server using the command-line interface:
-
+After installation, you can run it as a module:
 ```bash
-python -m mcp-server-waii --database-key YOUR_DB_KEY --api-key YOUR_API_KEY --url YOUR_WAII_URL
-``` 
-
-### Required Arguments
-
-- `--database-key`: Your database connection key
-- `--api-key`: Your WAII API key
-- `--url`: WAII API endpoint URL
-
-### Example
-
-```python
-from mcp_server_waii import serve
-import asyncio
-
-# Run the server
-asyncio.run(serve(
-    database_key="your_database_key",
-    api_key="your_api_key",
-    url="https://api.waii.ai/api/"
-))
+python -m mcp_server_waii \
+  --url "YOUR_WAII_URL" \
+  --api-key "YOUR_API_KEY" \
+  --database-key "YOUR_DATABASE_CONNECTION_STRING"
 ```
+
+## Requirements
+
+- Python 3.10 or higher
+- A WAII account with API access
+- Database credentials supported by WAII
+
+## Configuration
+
+### Configure for Claude.app
+
+There are several ways to configure the server for Claude:
+
+#### 1. Using uvx (Recommended)
+```json
+{
+    "mcpServers": {
+        "waii": {
+            "command": "uvx",
+            "args": [
+                "--directory",
+                "/path/to/waii-mcp-server",
+                "mcp_server_waii",
+                "--url",
+                "YOUR_WAII_URL",
+                "--api-key",
+                "YOUR_API_KEY",
+                "--database-key",
+                "YOUR_DATABASE_CONNECTION_STRING"
+            ]
+        }
+    }
+}
+```
+
+#### 2. Using Python installation
+```json
+{
+    "mcpServers": {
+        "waii": {
+            "command": "python",
+            "args": [
+                "-m",
+                "mcp_server_waii",
+                "--url",
+                "YOUR_WAII_URL",
+                "--api-key",
+                "YOUR_API_KEY",
+                "--database-key",
+                "YOUR_DATABASE_CONNECTION_STRING"
+            ]
+        }
+    }
+}
+```
+
+#### Example Values:
+- `YOUR_WAII_URL`: e.g., "http://localhost:9859/api/" or "https://api.waii.ai/api/"
+- `YOUR_API_KEY`: Your WAII API key
+- `YOUR_DATABASE_CONNECTION_STRING`: e.g., "snowflake://USER@HOST/DB?role=ROLE&warehouse=WAREHOUSE"
 
 ## Features
 
-- Database metadata management and conversation
-- Natural language to SQL query conversion
+- Natural language to SQL conversion
+- Database schema understanding and management
 - Query execution and result formatting
-- Automatic query and data visualization
+- Automatic query optimization suggestions
+- Data visualization capabilities
 
 ## Development
 
@@ -59,23 +118,18 @@ git clone https://github.com/waii-ai/mcp-server-waii.git
 cd mcp-server-waii
 ```
 
-2. Install dependencies:
+2. Install in development mode:
 ```bash
-pip install -e .
-```
-
-3. Run tests:
-```bash
-python -m pytest tests/
+uv pip install -e .
 ```
 
 ## Support
 
-For support, please:
+For support:
 1. Check the [GitHub Issues](https://github.com/waii-ai/mcp-server-waii/issues)
 2. Contact WAII support for API-related questions
 3. Open a new issue if you find a bug
 
 ## License
 
-MIT License - see LICENSE file for details. 
+Apache License 2.0 - see LICENSE file for details. 

@@ -12,7 +12,7 @@ version = "0.1.1"
 description = "An MCP server implementation for WAII database interactions"
 readme = "README.md"
 requires-python = ">=3.10"
-license = { text = "MIT" }
+license = { text = "Apache-2.0" }
 authors = [
     { name = "Swaraj Nayegandhi", email = "swaraj.nayegandhi@waii.ai" },
 ]
@@ -38,4 +38,5 @@ dependencies = [
 ]
 
 [project.scripts]
-mcp-server-waii = "mcp_server_waii:main" 
+mcp-server-waii = "mcp_server_waii:main"
+mcp_server_waii = "mcp_server_waii:main" 
