@@ -59,8 +59,6 @@ There are several ways to configure the server for Claude:
         "waii": {
             "command": "uvx",
             "args": [
-                "--directory",
-                "/path/to/waii-mcp-server",
                 "mcp_server_waii",
                 "--url",
                 "YOUR_WAII_URL",
@@ -96,7 +94,7 @@ There are several ways to configure the server for Claude:
 ```
 
 #### Example Values:
-- `YOUR_WAII_URL`: e.g., "http://<waii url>/api/"
+- `YOUR_WAII_URL`: e.g., "http://WAII_URL/api/"
 - `YOUR_API_KEY`: Your WAII API key
 - `YOUR_DATABASE_CONNECTION_STRING`: e.g., "snowflake://USER@HOST/DB?role=ROLE&warehouse=WAREHOUSE"
 
