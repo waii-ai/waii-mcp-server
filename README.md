@@ -2,6 +2,8 @@
 
 A Model Context Protocol server that provides database interaction capabilities through WAII. This server enables Language Models to interact with databases, execute queries, and process database content through natural language.
 
+![mcp](https://github.com/user-attachments/assets/f4dde80c-59f5-4f0b-ae47-dd440b900a18)
+
 ## Available Tools
 
 ### database
