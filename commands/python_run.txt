@@ -1,1 +1,1 @@
-python -m mcp-server-waii --url "http://localhost:9859/api/" --api-key "<your-api-key>" --database-key "snowflake://...@ACCOUNT/DB?role=WAII_USER_ROLE&warehouse=COMPUTE_WH"
+python -m mcp-server-waii --url "<waii-url>" --api-key "<your-api-key>" --database-key "<database-key>"
