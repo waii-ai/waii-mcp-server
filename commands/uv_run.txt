@@ -1,1 +1,1 @@
-uv run mcp-server-waii --url <waii url> --api-key <api_key> --database-key <database key>
+uv run mcp-server-waii --url "<waii-url>" --api-key "<your-api-key>" --database-key "<database-key>"
