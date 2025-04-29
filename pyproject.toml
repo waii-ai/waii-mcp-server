@@ -8,7 +8,7 @@ packages = ["mcp_server_waii"]
 
 [project]
 name = "mcp-server-waii"
-version = "0.1.1"
+version = "1.0.0"
 description = "An MCP server implementation for WAII database interactions"
 readme = "README.md"
 requires-python = ">=3.10"
@@ -43,4 +43,3 @@ Repository = "https://github.com/waii-ai/waii-mcp-server.git"
 
 [project.scripts]
 mcp-server-waii = "mcp_server_waii:main"
-mcp_server_waii = "mcp_server_waii:main"
