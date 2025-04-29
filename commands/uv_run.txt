@@ -1,1 +1,1 @@
-uv run mcp-server-waii --url "http://localhost:9859/api/" --api-key "a3301f83ade850be6b7dab5db5693bf7858f23acfb2e3c5fba0955caf46ac94b" --database-key "snowflake://WAII_USER@gqobxjv-bhb91428/MOVIE_DB?role=WAII_USER_ROLE&warehouse=COMPUTE_WH"
+uv run mcp-server-waii --url <waii url> --api-key <api_key> --database-key <database key>
